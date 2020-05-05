@@ -59,7 +59,7 @@ const Profile = ({navigation}) => {
             title: 'Extratos',
             subtitle: 'Veja seus extratos',
             route: 'Extrato',
-            icon: 'stream'
+            icon: 'poll-h'
         },
         {
             title: 'Transferências',
@@ -207,7 +207,7 @@ const Profile = ({navigation}) => {
                                 key={i}
                                 title={item.title}
                                 subtitle={item.subtitle}
-                                leftIcon={{type: 'font-awesome-5' , name: item.icon, size: 18 }}
+                                leftIcon={{type: 'material-community' , name: item.icon, size: 18 }}
                                 bottomDivider
                                 chevron
                             />

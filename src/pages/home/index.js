@@ -1,10 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {ScrollView, TouchableOpacity, View, Text} from 'react-native';
 
-import Styles from './Style';
-import Valores from './Valores';
-import ContaDigital from './ContaDigital';
-import UltimasVendas from './UltimasVendas';
 
 import {Container, FooterTab, Button, Content, Tab, Tabs, ScrollableTab} from 'native-base';
 import FooterContent from '../../components/footer';
@@ -13,6 +9,7 @@ import api from "../../services/api";
 import Load from '../../components/loader';
 import {Header, ButtonGroup, ListItem, Image} from 'react-native-elements';
 import colors from "../../components/styles/colors";
+import {MaskService} from "react-native-masked-text";
 
 
 const ls = require('react-native-local-storage');
@@ -28,46 +25,54 @@ const Home = ({navigation}) => {
         setLoading(true);
         ls.get('@ListApp:userToken').then(data => {
             setUser(data.user ?? [])
+            api.get('/my-last-orders/' + data.user.id)
+                .then((res) => {
+                    setTransaction(res.data.last_orders)
+                });
         });
 
-        api.get('ver-pedido-all')
-            .then((res) => {
-                setTransaction(res.data.pedido)
-            })
+
         setLoading(false);
 
     }, []);
+
 
     const suggestion = [
         {
             id: 1,
             title: 'Pagar QR-code',
-            color: ''
+            color: '',
+            img_path: require('../../assets/icons-home/qrcode-icon.png'),
         },
         {
             id: 2,
             title: 'Recarga de ' + "\n" + 'Celular',
-            color: ''
+            color: '',
+            img_path: require('../../assets/icons-pagar/mobile-icon-10.png'),
         },
         {
             id: 3,
             title: 'Cobrar',
-            color: ''
+            color: '',
+            img_path: require('../../assets/icons-home/toDemand-icon.png'),
         },
         {
             id: 4,
             title: 'Gerar Link' + "\n" + 'de pagamento',
-            color: ''
+            color: '',
+            img_path: require('../../assets/icons-home/pay-link-icon-2.png'),
         },
         {
             id: 5,
             title: 'Transferir',
-            color: ''
+            color: '',
+            img_path: require('../../assets/icons-home/transfer-icon.png'),
         },
         {
             id: 6,
-            title: 'Pagar Boleto',
-            color: ''
+            title: 'Pagar contas',
+            color: '',
+            img_path: require('../../assets/icons-home/pay-bill.png'),
         },
 
     ];
@@ -77,7 +82,8 @@ const Home = ({navigation}) => {
         {
             id: 1,
             title: 'Adicione um' + "\n" + 'Favorito',
-            color: ''
+            color: '',
+            img_path: require('../../assets/icons-home/fovourite-icon.png'),
         }
 
     ];
@@ -115,12 +121,13 @@ const Home = ({navigation}) => {
 
               }}
         >
-            <View style={{
-                width: 70,
-                height: 70,
+            <Image style={{
+                width: 50,
+                height: 50,
                 borderRadius: 100,
-                backgroundColor: 'grey'
-            }}></View>
+            }}
+                   source={i.img_path}
+            />
             <Text style={{textAlign: 'center', marginTop: 5}}>{i.title}</Text>
         </View>
     );
@@ -215,20 +222,21 @@ const Home = ({navigation}) => {
                     </View>
                 </View>
                 <View style={{marginTop: 15}}>
-                    <Text style={{backgroundColor: colors.lighter9, padding: 15, fontWeight: 'bold'}}>Ultimas
-                        trasacoes</Text>
+                    <Text style={{backgroundColor: colors.lighter9, padding: 15, fontWeight: 'bold'}}> Últimas
+                        trasacões</Text>
                     {
                         transactions.map((item, i) => (
                             <ListItem
                                 key={i}
-                                title={item.cadastro}
+                                title={item.items.product}
                                 subtitle={
                                     <View>
-                                        <Text>{item.nome_comprador}</Text>
-                                        <Text>Valor: {item.total}</Text>
+                                        <Text>{item.items.detail}</Text>
+                                        <Text>Valor: {MaskService.toMask('money', item.items.price)}</Text>
                                     </View>
                                 }
-                                leftIcon={{name: item.icon}}
+                                // rightSubtitle={item.items.detail}
+                                // leftIcon={{name: item.icon}}
                                 bottomDivider
                                 chevron
                             />
