@@ -1,0 +1,61 @@
+{
+  "name": "pgv4",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "android": "react-native run-android",
+    "ios": "react-native run-ios",
+    "start": "react-native start",
+    "test": "jest",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "@react-native-community/async-storage": "^1.10.0",
+    "@react-native-community/masked-view": "^0.1.8",
+    "axios": "^0.19.2",
+    "broleto": "^0.0.7",
+    "date-fns": "^2.12.0",
+    "expo": "^37.0.4",
+    "galio-framework": "^0.6.3",
+    "indicative": "^7.4.4",
+    "moment": "^2.24.0",
+    "native-base": "^2.13.12",
+    "react": "16.9.0",
+    "react-native": "0.61.5",
+    "react-native-camera": "^3.23.1",
+    "react-native-elements": "^1.2.7",
+    "react-native-gesture-handler": "^1.6.1",
+    "react-native-local-storage": "^1.5.2",
+    "react-native-masked-text": "^1.13.0",
+    "react-native-modal": "^11.5.6",
+    "react-native-reanimated": "^1.8.0",
+    "react-native-safe-area-context": "^0.7.3",
+    "react-native-screens": "^2.4.0",
+    "react-native-spinkit": "^1.5.0",
+    "react-native-textinput-effects": "^0.5.1",
+    "react-native-vector-icons": "^6.6.0",
+    "react-navigation": "^4.3.7",
+    "react-navigation-drawer": "^2.4.11",
+    "react-navigation-stack": "^2.3.11",
+    "react-navigation-tabs": "^2.8.11",
+    "rn-swipeable-panel": "^1.0.22",
+    "styled-components": "^5.1.0"
+  },
+  "devDependencies": {
+    "@babel/core": "7.9.0",
+    "@babel/runtime": "7.9.2",
+    "@react-native-community/eslint-config": "0.0.5",
+    "babel-jest": "24.9.0",
+    "eslint": "6.8.0",
+    "jest": "24.9.0",
+    "metro-react-native-babel-preset": "0.56.4",
+    "react-test-renderer": "16.9.0"
+  },
+  "jest": {
+    "preset": "react-native"
+  },
+  "android": {
+    "package": "com.quielnerestecnology.pagtop",
+    "versionCode": 1
+  }
+}
