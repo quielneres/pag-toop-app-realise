@@ -56,7 +56,6 @@ export default function Welcome(props) {
 
             const user = response.data;
 
-
             await saveUser(user);
 
             const resetAction = StackActions.reset({

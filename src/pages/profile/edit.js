@@ -172,7 +172,7 @@ const EditProfile = ({navigation}) => {
 
             const resetAction = StackActions.reset({
                 index: 0,
-                actions: [NavigationActions.navigate({routeName: 'App'})],
+                actions: [NavigationActions.navigate({routeName: 'Home'})],
             });
 
             setModal(true);

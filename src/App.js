@@ -410,6 +410,9 @@ const App = createStackNavigator({
     },
     Auth: {
         screen: Welcome,
+        navigationOptions: {
+            headerShown: false
+        },
     }
     ,
     Login: {
@@ -417,9 +420,6 @@ const App = createStackNavigator({
     },
     CreateAccount: {
         screen: SingUp,
-        navigationOptions: {
-            headerShown: false
-        },
     },
     Home: {
         screen: Home,
