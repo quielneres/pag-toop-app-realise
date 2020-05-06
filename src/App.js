@@ -30,6 +30,7 @@ import CreditCard from './pages/creditCard';
 import CreditCardAdd from './pages/creditCard/add';
 import OrderDetail from './pages/extract/detail';
 import EnterValue from './pages/enterValue';
+import Response from './pages/enterValue/response';
 import Transfer from './pages/transfer';
 
 
@@ -198,7 +199,7 @@ import Transfer from './pages/transfer';
 //             headerTitle: 'Profile',
 //         },
 //     },
-// });
+// });content_header
 //
 // const CarteiraDigital = createStackNavigator({
 //     CarteiraDigital: {
@@ -566,11 +567,15 @@ const App = createStackNavigator({
     },
     EnterValue: {
         screen: EnterValue,
-        navigationOptions: ({navigation}) => ({
-            headerTitle: 'Valor',
-            headerTitleAlign: 'center',
-            headerLeft: <HeaderBackButton onPress={() => navigation.goBack(null)}/>
-        }),
+        navigationOptions:{
+            headerShown: false
+        }
+    },
+    Response: {
+        screen: Response,
+        navigationOptions:{
+            headerShown: false
+        }
     },
     Transfer: {
         screen: Transfer,

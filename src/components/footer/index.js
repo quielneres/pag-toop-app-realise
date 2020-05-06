@@ -63,7 +63,7 @@ const FooterContent = ({navigation, action}) => {
                                 m.center ?
                                     <TouchableOpacity>
                                         <Image
-                                            style={{width: 50, height: 50, marginTop: -30}}
+                                            style={{width: 60, height: 60, marginTop: -10}}
                                             source={require('../../assets/icons-home/maquina-icon.png')}
                                         />
                                     </TouchableOpacity>
