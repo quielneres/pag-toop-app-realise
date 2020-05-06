@@ -29,7 +29,7 @@ import DigitalWallet from './pages/digitalWallet';
 import CreditCard from './pages/creditCard';
 import CreditCardAdd from './pages/creditCard/add';
 import OrderDetail from './pages/extract/detail';
-import Billet from './pages/billet';
+import EnterValue from './pages/enterValue';
 import Transfer from './pages/transfer';
 
 
@@ -564,10 +564,10 @@ const App = createStackNavigator({
             headerLeft: <HeaderBackButton onPress={() => navigation.goBack(null)}/>
         }),
     },
-    Billet: {
-        screen: Billet,
+    EnterValue: {
+        screen: EnterValue,
         navigationOptions: ({navigation}) => ({
-            headerTitle: 'Boleto',
+            headerTitle: 'Valor',
             headerTitleAlign: 'center',
             headerLeft: <HeaderBackButton onPress={() => navigation.goBack(null)}/>
         }),

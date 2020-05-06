@@ -18,8 +18,7 @@ const PayBill = ({navigation}) => {
         {
             id: 2,
             title: ' Digitar o codigo de barras manualmente',
-            route: 'WriteBarcode',
-            data_route: {brCode: '34191091070000013555851122200002157810000115300'}
+            route: 'WriteBarcode'
         },
     ];
 
@@ -52,7 +51,7 @@ const PayBill = ({navigation}) => {
                                 key={m.id}
                                 leftAvatar={{source: require('../../../assets/icons-pagar/barcode-icon.png')}}
                                 title={m.title}
-                                onPress={() => navigation.navigate(m.route, m.data_route ? m.data_route : null)}
+                                onPress={() => navigation.navigate(m.route)}
                             />
                         </Card>
                     ))

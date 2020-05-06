@@ -207,7 +207,7 @@ const Profile = ({navigation}) => {
                                 key={i}
                                 title={item.title}
                                 subtitle={item.subtitle}
-                                leftIcon={{type: 'material-community' , name: item.icon, size: 18 }}
+                                leftIcon={<Icon name={item.icon} size={17}/>}
                                 bottomDivider
                                 chevron
                             />

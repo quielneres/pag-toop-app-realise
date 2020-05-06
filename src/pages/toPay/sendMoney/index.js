@@ -13,28 +13,25 @@ const ToPay = ({navigation}) => {
             title: 'Contas e boletos',
             icon: 'barcode',
             route: 'PayBill',
-            action: false,
             size: 16
         },
         {
             title: 'Recaga Celular',
             icon: 'mobile-alt',
             route: 'RechargeCell',
-            action: false,
             size: 21
         },
         {
             title: 'Pagar com QR code',
             icon: 'qrcode',
             route: 'PayBill',
-            action: false,
             size: 18
         },
         {
             title: 'Enviar dinheiro',
             icon: 'money-bill-alt',
-            action: 'sendMoney',
-            route: 'EnterValue',
+            action: ''
+            rout: null,
             size: 16
         },
 
@@ -46,7 +43,7 @@ const ToPay = ({navigation}) => {
                 {
                     options.map((item, i) => (
                         <ListItem
-                            onPress={() => navigation.navigate(item.route, item.action ? {action: item.action} : null)}
+                            onPress={() => navigation.navigate(item.route)}
                             key={i}
                             title={item.title}
                             leftIcon={<Icon name={item.icon} size={item.size}/>}
