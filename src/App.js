@@ -198,7 +198,7 @@ import Transfer from './pages/transfer';
 //         navigationOptions: {
 //             headerTitle: 'Profile',
 //         },
-//     },
+//     },Home
 // });content_header
 //
 // const CarteiraDigital = createStackNavigator({

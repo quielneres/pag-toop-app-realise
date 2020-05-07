@@ -219,7 +219,7 @@ const Profile = ({navigation}) => {
                         <TouchableOpacity
                             onPress={() =>
                                 deleteUser().then(() => {
-                                    navigation.navigate('Loading');
+                                    navigation.navigate('Auth');
                                 })
                             }
                             style={{

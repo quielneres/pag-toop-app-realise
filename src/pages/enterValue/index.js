@@ -38,6 +38,7 @@ const EnterValue = ({navigation}) => {
         expire: '13/05/2020',
         barCode: '34191.09024 23086.220193 61309.830000 6 82510000002306',
         link: 'https://sandbox.moip.com.br/v2/boleto/BOL-3F8VTINHIPNQ',
+        email: 'quielneres@gmail.com',
     };
     const [action] = useState(navigation.getParam('action'));
 
