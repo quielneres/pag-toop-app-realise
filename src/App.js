@@ -505,11 +505,9 @@ const App = createStackNavigator({
     },
     ToDemand: {
         screen: ToDemand,
-        navigationOptions: ({navigation}) => ({
-            headerTitle: 'Cobranças',
-            headerTitleAlign: 'center',
-            headerLeft: <HeaderBackButton onPress={() => navigation.goBack(null)}/>
-        }),
+        navigationOptions: {
+            headerShown: false
+        },
     },
     ProductList: {
         screen: ProductList,
