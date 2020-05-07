@@ -1,74 +1,51 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 
-import {Text, StyleSheet, View, Alert, ActivityIndicator, TouchableOpacity} from 'react-native';
-import Modal from 'react-native-modal';
+import {View, StyleSheet, Text} from "react-native";
+import {Button, Overlay} from 'react-native-elements';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 
-const SingUp = ({navigation, status, menssage, menssageBtn, action}) => {
+
+const Modal = ({status, type,message,  msg_btn, action, actionClose}) => {
+
+    const WorningBalence = () => (
+        <Overlay isVisible={status} overlayStyle={{width: '70%', height: 'auto'}}>
+            <View style={styles.content}>
+                <Icon name={'exclamation-triangle'} size={30} color={'#D9B504'}/>
+                <Text style={{
+                    fontWeight: 'bold',
+                    marginTop: 20,
+                    textAlign: 'center'
+                }}>{message}</Text>
+            </View>
+            <View style={{ margin: 15}}>
+                <Button
+                    onPress={action}
+                    title={msg_btn}
+                />
+                <Button
+                    type="clear"
+                    onPress={actionClose}
+                    title={'Agora não'}
+                />
+            </View>
+        </Overlay>
+    );
+
     return (
         <View>
-            <Modal isVisible={status}>
-                <View style={styles.content}>
-                    <Text style={styles.textTile}>Secesso!</Text>
-                    <Text style={styles.msg}>{menssage}</Text>
-                    <View style={styles.viewButton}>
-                        <TouchableOpacity onPress={action}>
-                            <Text>{menssageBtn}</Text>
-                        </TouchableOpacity>
-                    </View>
-                </View>
-            </Modal>
+            {type === 2 ? WorningBalence() : null}
         </View>
-    )
+    );
 };
 
 const styles = StyleSheet.create({
     content: {
-        backgroundColor: '#fff',
-        margin: 15,
-        width: '90%',
-        padding: 15,
-    },
-    textTile: {
-        color: 'green',
-        fontWeight: 'bold',
-        fontSize: 20,
-        marginBottom: 10,
-    },
-    msg: {
-        margin: 0,
-    },
-    viewButton: {
-        flexDirection: 'row',
-        marginTop: 20,
-        justifyContent: 'flex-end'
-    },
-    form: {
-        padding: 0,
-        margin: 0,
-        // backgroundColor: '#4CB1F7'
+        alignItems: 'center',
+        margin: 20,
 
     },
-    item: {
-        padding: 0,
-        margin: 0,
-        width: '100%',
-        flexDirection: 'column',
-        marginBottom: 15
-    },
-    label: {
-        // color:  'white',
-        width: '100%',
-        fontWeight: 'bold'
-    },
-    input: {
-        // backgroundColor: 'white',
-        width: '100%',
-        height: 45,
-        borderWidth: 0.5,
-        borderRadius: 7,
-        borderColor: 'gray'
-    }
+
 });
 
 
-export default SingUp;
+export default Modal;

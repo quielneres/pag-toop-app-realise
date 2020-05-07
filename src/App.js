@@ -32,6 +32,7 @@ import OrderDetail from './pages/extract/detail';
 import EnterValue from './pages/enterValue';
 import Response from './pages/enterValue/response';
 import Transfer from './pages/transfer';
+import SendMoney from './pages/toPay/sendMoney';
 
 
 //DigitalWallet
@@ -581,6 +582,14 @@ const App = createStackNavigator({
         screen: Transfer,
         navigationOptions: ({navigation}) => ({
             headerTitle: 'Transferir',
+            headerTitleAlign: 'center',
+            headerLeft: <HeaderBackButton onPress={() => navigation.goBack(null)}/>
+        }),
+    },
+    SendMoney: {
+        screen: SendMoney,
+        navigationOptions: ({navigation}) => ({
+            headerTitle: 'Enviar dinheiro',
             headerTitleAlign: 'center',
             headerLeft: <HeaderBackButton onPress={() => navigation.goBack(null)}/>
         }),

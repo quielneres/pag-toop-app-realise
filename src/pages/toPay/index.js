@@ -34,7 +34,7 @@ const ToPay = ({navigation}) => {
             title: 'Enviar dinheiro',
             icon: 'money-bill-alt',
             action: 'sendMoney',
-            route: 'EnterValue',
+            route: 'SendMoney',
             size: 16
         },
 

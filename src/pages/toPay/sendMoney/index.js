@@ -2,7 +2,6 @@ import React from 'react';
 
 
 import {Container, Content} from 'native-base';
-import FooterContent from "../../components/footer";
 import {ListItem} from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome5'
 
@@ -30,7 +29,7 @@ const ToPay = ({navigation}) => {
         {
             title: 'Enviar dinheiro',
             icon: 'money-bill-alt',
-            action: ''
+            action: 'SendMoney',
             rout: null,
             size: 16
         },
@@ -53,7 +52,7 @@ const ToPay = ({navigation}) => {
                     ))
                 }
             </Content>
-            <FooterContent navigation={navigation} action={'toPay'}/>
+            {/*<FooterContent navigation={navigation} action={'toPay'}/>*/}
         </Container>
     );
 };

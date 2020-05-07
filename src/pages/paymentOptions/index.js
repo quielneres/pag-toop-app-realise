@@ -33,7 +33,6 @@ const RechargePay = ({navigation}) => {
     const [card, setCard] = useState([]);
     const [payment_data] = useState(navigation.getParam('payment_data'));
     const [action] = useState(navigation.getParam('action'));
-    const [modal, setModal] = useState(false);
     const [header, setHeader] = useState(
         {
             title: '',
@@ -50,14 +49,11 @@ const RechargePay = ({navigation}) => {
         }
     );
 
-
     const [cellNumber, setCellNumber] = useState(navigation.getParam('cellNumber'));
     const [operadora, setOperadora] = useState(navigation.getParam('operadora'));
     const [loading, setLoading] = useState(false);
     const [link, setLink] = useState(null);
     const [myBalance, setBalance] = useState(5);
-
-
     const [modal_worning, setModalWorning] = useState(
         {
             message: '',
@@ -65,6 +61,18 @@ const RechargePay = ({navigation}) => {
             status: false
         }
     );
+
+    const [modal, setModal] = useState(
+        {
+            message: '',
+            msg_btn: '',
+            action: '',
+            visible: false,
+            type: null,
+            method: null,
+        }
+    );
+
 
     useEffect(() => {
         ls.get('@ListApp:userToken').then(data => {
@@ -109,11 +117,11 @@ const RechargePay = ({navigation}) => {
             ]);
         }
 
-        {card ? setPaymentStatus({...payment_status, card: true}) : null}
+        {
+            card ? setPaymentStatus({...payment_status, card: true}) : null
+        }
 
     }, []);
-
-    console.log(card)
 
     const payments_methods = [
 
@@ -150,7 +158,7 @@ const RechargePay = ({navigation}) => {
             detalhes: 'Recarga Celular',
             payment_method: pay_method,
             cell_number: action === 'cellular_recharge' ? payment_data.number : null,
-            operadora_name: action === 'cellular_recharge'? payment_data.operator : null
+            operadora_name: action === 'cellular_recharge' ? payment_data.operator : null
         };
 
         try {
@@ -171,21 +179,26 @@ const RechargePay = ({navigation}) => {
     const condition = () => {
         {
             payment_method === 2 ?
-                myBalance >= value ? submit(2) : setModalWorning({
-                    message: 'Seu saldo e inferior ao necessario!',
-                    route: 'Profile',
-                    status: true
-                })
+                myBalance >= header ? submit(2) :
+                    setModal({
+                        ...modal,
+                        visible: true,
+                        type: 2,
+                        message: 'Seu saldo não é suficiente para realizar essa operação!',
+                        msg_btn: 'Enviar dinheiro'
+                    })
                 : null
         }
 
         {
             payment_method === 3 ?
-                user.card ? submit(3) : setModalWorning({
-                    message: 'Voce nao tem um cartao selecionado!',
-                    route: 'CreditCard',
-                    status: true
-                })
+                user.card ? submit(3) :
+                    setModal({...modal,
+                        visible: true,
+                        type: 2,
+                        message: 'Você não possui cartões ativos!',
+                        msg_btn: 'Gerenciar cartões'
+                    })
                 : null
         }
 
@@ -196,11 +209,7 @@ const RechargePay = ({navigation}) => {
             user.id_comprador ?
                 payment_method === 1 ? submit(1) : condition()
                 :
-                setModalWorning({
-                    message: 'Complete o cadastro para continuar!',
-                    route: 'EditProfile',
-                    status: true
-                })
+                setModal({...modal, visible: true, type: 2, method: 1})
         }
     };
 
@@ -239,9 +248,9 @@ const RechargePay = ({navigation}) => {
         <ListItem
             roundAvatar
             title={d.title}
-            titleStyle={{ width: '40%'}}
+            titleStyle={{width: '40%'}}
             rightSubtitle={d.subtitle}
-            rightSubtitleStyle={{ width: 200, textAlign: 'right'}}
+            rightSubtitleStyle={{width: 200, textAlign: 'right'}}
         />
     );
 
@@ -265,19 +274,24 @@ const RechargePay = ({navigation}) => {
         navigation.navigate(modal_worning.route, {data_user: user})
     };
 
+    const cancelModal = () => {
+        setModal({...modal, visible: false})
+    };
+
+    const submitModal = () => {
+        setModal({...modal, visible: false});
+        {payment_method === 3 ? navigation.navigate('CreditCard') : null}
+    };
+
     return (
         <Container>
             <Modal
-                status={modal}
-                menssage={'Operaçao realizada com sucesso!'}
-                action={() => submitMessage()}
-                menssageBtn={'OK'}
-            />
-            <WorningModal
-                status={modal_worning.status}
-                menssage={modal_worning.message}
-                action={() => submitWorning()}
-                menssageBtn={'OK'}
+                status={modal.visible}
+                type={modal.type}
+                action={() => submitModal()}
+                actionClose={() => cancelModal()}
+                message={modal.message}
+                msg_btn={modal.msg_btn}
             />
             <Content>
                 <Card>
