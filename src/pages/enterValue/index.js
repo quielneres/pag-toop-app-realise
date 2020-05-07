@@ -57,14 +57,21 @@ const EnterValue = ({navigation}) => {
     const [numeral] = useState({numeral: []});
 
     useEffect(() => {
-
         if (action === 'billet') {
-
             setDataTransaction(
                 {
                     ...data_transaction,
                     title: 'Boleto de cobrança',
                     title_value: 'Qual o valor da Cobrança?',
+                }
+            );
+        }
+        if (action === 'send_money') {
+            setDataTransaction(
+                {
+                    ...data_transaction,
+                    title: 'Adicionar dinheiro via boleto',
+                    title_value: 'Qual o valor que você quer adicionar?',
                 }
             );
         }

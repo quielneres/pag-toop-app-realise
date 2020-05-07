@@ -39,7 +39,7 @@ export const Input = styled.TextInput`
   border-radius: 3px;
   height: 44px;
   padding: 0px 20px;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
   border: 0.5px solid #4CB1F7;
 `;
 
@@ -48,7 +48,7 @@ export const Button = styled.TouchableOpacity`
   border-radius: 3px;
   height: 44px;
   padding: 0px 20px;
-  margin-top: 10px;
+  margin: 10px;
   justify-content: center;
   align-items: center;
 `;

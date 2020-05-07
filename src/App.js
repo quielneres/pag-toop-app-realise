@@ -149,6 +149,7 @@ import SendMoney from './pages/toPay/sendMoney';
 //     // Details: {
 //     //     screen: Detalhes,
 //     //     navigationOptions: {
+
 //     //         headerTitle: 'Detalhes',
 //     //     },
 //     // },
@@ -445,11 +446,9 @@ const App = createStackNavigator({
     },
     ToPay: {
         screen: ToPay,
-        navigationOptions: ({navigation}) => ({
-            headerTitle: 'Pagamentos',
-            headerTitleAlign: 'center',
-            headerLeft: <HeaderBackButton onPress={() => navigation.goBack(null)}/>
-        }),
+        navigationOptions: {
+            headerShown: false
+        },
     },
     RechargeCell: {
         screen: RechargeCell,
@@ -588,11 +587,9 @@ const App = createStackNavigator({
     },
     SendMoney: {
         screen: SendMoney,
-        navigationOptions: ({navigation}) => ({
-            headerTitle: 'Enviar dinheiro',
-            headerTitleAlign: 'center',
-            headerLeft: <HeaderBackButton onPress={() => navigation.goBack(null)}/>
-        }),
+        navigationOptions: {
+            headerShown: false
+        },
     },
 });
 export default createAppContainer(App);

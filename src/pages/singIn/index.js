@@ -12,16 +12,19 @@ import {
     Title,
     TextInformation,
     Error,
-    Form,
-    Input,
     Button,
+    Form,
     ButtonText,
     TextSingUp,
     ContentSingUp,
     CreateCount,
 } from './styles';
 
+import {Input,  Text} from "react-native-elements";
+
+import Icon from 'react-native-vector-icons/FontAwesome5'
 import Modal from '../../components/modal';
+import colors from '../../components/styles/colors'
 
 export default function Welcome(props) {
     const [username, setUsername] = useState('');
@@ -30,8 +33,10 @@ export default function Welcome(props) {
     const [errorMessage, setErrorMessage] = useState(null);
     const [new_email, setNewEmail] = useState(props.navigation.getParam('email'));
 
-    useEffect(()=> {
-        {new_email? setUsername(new_email) : null}
+    useEffect(() => {
+        {
+            new_email ? setUsername(new_email) : null
+        }
     });
 
     async function saveUser(user) {
@@ -78,7 +83,7 @@ export default function Welcome(props) {
         <Container>
             <StatusBar barStyle="light-content"/>
             <View style={{justifyContent: 'center', alignItems: 'center'}}>
-                <Image style={{width: 200, height: 100}} source={require('../../assets/logo.jpg')}/>
+                <Image style={{width: 100, height: 55}} source={require('../../assets/logo.jpg')}/>
             </View>
 
             {!!errorMessage && <Error>{errorMessage}</Error>}
@@ -86,28 +91,38 @@ export default function Welcome(props) {
             <Form>
                 <Input
                     autoCapitalize="none"
+                    inputContainerStyle={{borderColor: colors.primary}}
                     autoCorrect={false}
                     placeholder="Digite seu usuário"
                     underlineColorAndroid="rgba(0, 0, 0, 0)"
                     value={username}
+                    leftIcon={<Icon name={'user-alt'}  size={16}/>}
                     onChangeText={username => setUsername(username)}
                 />
 
                 <Input
+                    inputContainerStyle={{borderColor: colors.primary}}
                     autoCapitalize="none"
                     autoCorrect={false}
                     placeholder="Digite sua senha"
-                    underlineColorAndroid="rgba(0, 0, 0, 0)"
+                    // underlineColorAndroid="rgba(0, 0, 0, 0)"
                     secureTextEntry={true}
+                    leftIcon={<Icon name={'unlock-alt'}  size={16}/>}
                     value={password}
                     onChangeText={password => setPassword(password)}
                 />
+
+                {/*<Button*/}
+                    {/*containerStyle={{marginTop: 30, backgroundColor:  colors.primary, margin: 10}}*/}
+                    {/*onPress={signIn}*/}
+                    {/*title={'Entrar'}*/}
+                {/*/>*/}
 
                 <Button onPress={signIn}>
                     {loading ? (
                         <ActivityIndicator size="small" color="#FFF"/>
                     ) : (
-                        <ButtonText>Prosseguir</ButtonText>
+                        <ButtonText>Entrar</ButtonText>
                     )}
                 </Button>
             </Form>

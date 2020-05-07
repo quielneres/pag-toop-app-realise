@@ -48,19 +48,9 @@ const RechargePay = ({navigation}) => {
             card: false
         }
     );
-
-    const [cellNumber, setCellNumber] = useState(navigation.getParam('cellNumber'));
-    const [operadora, setOperadora] = useState(navigation.getParam('operadora'));
     const [loading, setLoading] = useState(false);
     const [link, setLink] = useState(null);
     const [myBalance, setBalance] = useState(5);
-    const [modal_worning, setModalWorning] = useState(
-        {
-            message: '',
-            route: '',
-            status: false
-        }
-    );
 
     const [modal, setModal] = useState(
         {
@@ -269,17 +259,13 @@ const RechargePay = ({navigation}) => {
         })
     };
 
-    const submitWorning = () => {
-        setModalWorning(false);
-        navigation.navigate(modal_worning.route, {data_user: user})
-    };
-
     const cancelModal = () => {
         setModal({...modal, visible: false})
     };
 
     const submitModal = () => {
         setModal({...modal, visible: false});
+        {payment_method === 2 ? navigation.navigate('SendMoney') : null}
         {payment_method === 3 ? navigation.navigate('CreditCard') : null}
     };
 
