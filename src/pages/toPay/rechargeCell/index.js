@@ -17,7 +17,8 @@ import api from "../../../services/api";
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 
-import { Input } from 'react-native-elements';
+import {Header, Input} from 'react-native-elements';
+import colors from "../../../components/styles/colors";
 
 const RechargeCell = ({navigation}) => {
 
@@ -59,6 +60,15 @@ const RechargeCell = ({navigation}) => {
 
     return (
         <Container>
+            <Header
+                containerStyle={{backgroundColor: colors.primary}}
+                leftComponent={<Icon name={'chevron-left'} color={'#fff'} size={25}
+                                     onPress={() => navigation.goBack(null)}/>}
+                centerComponent={{
+                    text: 'Reacarga de celular',
+                    style: {fontSize: 16, color: '#fff', fontWeight: 'bold'}
+                }}
+            />
             <Content>
                 <Form style={{padding: 15}}>
                     <Input

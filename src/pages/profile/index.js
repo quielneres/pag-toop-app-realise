@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 
 import {
     Container,
-    Header,
+
     Content,
     Body,
     List,
@@ -30,7 +30,7 @@ import FooterContent from '../../components/footer';
 import SwipeablePanel from 'rn-swipeable-panel';
 import {Hoshi} from "react-native-textinput-effects";
 import {Alert} from "react-native";
-import { ListItem} from 'react-native-elements';
+import {ListItem, Header, Avatar} from 'react-native-elements';
 
 const ls = require('react-native-local-storage');
 
@@ -179,21 +179,13 @@ const Profile = ({navigation}) => {
     );
 
     const renderUser = (usr) => (
-        <Header style={Style.header}>
-            <TouchableOpacity onPress={() => navigation.navigate('EditProfile', {data_user: user})}>
-            <Left>
-                <Image source={{uri: url_img()}}/>
-            </Left>
-            <Body>
-            <UserName>{usr.name}</UserName>
-            <TextDescription>Editar perfil</TextDescription>
-            </Body>
-                <Right>
-                    <Icon name={'angle-right'} size={24}/>
-                </Right>
-            </TouchableOpacity>
-        </Header>
-    )
+        <Header
+            containerStyle={{backgroundColor: '#fff'}}
+            leftComponent={<Avatar size="small" rounded title="US" activeOpacity={0.7}/>}
+            centerComponent={{ text: usr.name, style: { fontWeight: 'bold' } }}
+            rightComponent={<Icon name={'chevron-right'} size={20}  onPress={() => navigation.navigate('EditProfile', {data_user: user})} />}
+        />
+    );
 
      return (
         <Container>

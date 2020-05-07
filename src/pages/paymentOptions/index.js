@@ -21,10 +21,11 @@ const ls = require('react-native-local-storage');
 import Modal from "../../components/modal";
 import WorningModal from "../../components/modal/worning";
 
-import {Button, ListItem, Card, CheckBox} from 'react-native-elements';
+import {Button, ListItem, Card, CheckBox, Header} from 'react-native-elements';
 
 import {Boleto} from "broleto";
 import {MaskService} from "react-native-masked-text";
+import colors from "../../components/styles/colors";
 
 
 const RechargePay = ({navigation}) => {
@@ -278,6 +279,15 @@ const RechargePay = ({navigation}) => {
                 actionClose={() => cancelModal()}
                 message={modal.message}
                 msg_btn={modal.msg_btn}
+            />
+            <Header
+                containerStyle={{backgroundColor: colors.primary}}
+                leftComponent={<Icon name={'chevron-left'} color={'#fff'} size={25}
+                                     onPress={() => navigation.goBack(null)}/>}
+                centerComponent={{
+                    text: 'Finalizar',
+                    style: {fontSize: 16, color: '#fff', fontWeight: 'bold'}
+                }}
             />
             <Content>
                 <Card>

@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {ScrollView, TouchableOpacity, View, Text} from 'react-native';
+import {ScrollView, TouchableOpacity, View, Text, Alert} from 'react-native';
 
 
 import {Container, FooterTab, Button, Content, Tab, Tabs, ScrollableTab} from 'native-base';
@@ -24,7 +24,7 @@ const Home = ({navigation}) => {
     useEffect(() => {
         setLoading(true);
         ls.get('@ListApp:userToken').then(data => {
-            setUser(data.user ?? [])
+            setUser(data.user ?? []);
             api.get('/my-last-orders/' + data.user.id)
                 .then((res) => {
                     setTransaction(res.data.last_orders)
@@ -37,89 +37,16 @@ const Home = ({navigation}) => {
     }, []);
 
 
-    const suggestion = [
-        {
-            id: 1,
-            title: 'Pagar QR-code',
-            color: '',
-            img_path: require('../../assets/icons-home/qrcode-icon.png'),
-        },
-        {
-            id: 2,
-            title: 'Recarga de ' + "\n" + 'Celular',
-            color: '',
-            img_path: require('../../assets/icons-pagar/mobile-icon-10.png'),
-        },
-        {
-            id: 3,
-            title: 'Cobrar',
-            color: '',
-            img_path: require('../../assets/icons-home/toDemand-icon.png'),
-        },
-        {
-            id: 4,
-            title: 'Gerar Link' + "\n" + 'de pagamento',
-            color: '',
-            img_path: require('../../assets/icons-home/pay-link-icon-2.png'),
-        },
-        {
-            id: 5,
-            title: 'Transferir',
-            color: '',
-            img_path: require('../../assets/icons-home/transfer-icon.png'),
-        },
-        {
-            id: 6,
-            title: 'Pagar contas',
-            color: '',
-            img_path: require('../../assets/icons-home/pay-bill.png'),
-        },
-
-    ];
-
-
-    const favirite = [
-        {
-            id: 1,
-            title: 'Adicione um' + "\n" + 'Favorito',
-            color: '',
-            img_path: require('../../assets/icons-home/fovourite-icon.png'),
-        }
-
-    ];
-
-    const partners = [
-        {
-            id: 1,
-            img_path: require('../../assets/icons-descontos/supermarket.png'),
-            title: 'Supermercados'
-        },
-        {
-            id: 2,
-            img_path: require('../../assets/icons-descontos/farmacia.png'),
-            title: 'Farmacias'
-        },
-        {
-            id: 3,
-            img_path: require('../../assets/icons-descontos/comercio.png'),
-            title: 'Comercio'
-        },
-        {
-            id: 4,
-            img_path: require('../../assets/icons-descontos/retsaurante.png'),
-            title: 'Restaurantes'
-        },
-    ];
-
     const renderFastMenu = i => (
-        <View key={i.id}
-              style={{
-                  marginLeft: 15,
-                  marginTop: 15,
-                  width: 120,
-                  alignItems: 'center',
+        <TouchableOpacity key={i.id}
+                          onPress={() => i.route ? navigation.navigate(i.route, i.action ? {action: i.action} : null) : Alert.alert('Nao implementdo')}
+                          style={{
+                              marginLeft: 15,
+                              marginTop: 15,
+                              width: 120,
+                              alignItems: 'center',
 
-              }}
+                          }}
         >
             <Image style={{
                 width: 50,
@@ -129,7 +56,7 @@ const Home = ({navigation}) => {
                    source={i.img_path}
             />
             <Text style={{textAlign: 'center', marginTop: 5}}>{i.title}</Text>
-        </View>
+        </TouchableOpacity>
     );
 
     const renderPartners = p => (
@@ -140,7 +67,7 @@ const Home = ({navigation}) => {
             justifyContent: 'center',
             alignItems: 'center'
         }}>
-            <Image style={{width:70, height: 70, marginBottom: 10}} source={p.img_path}/>
+            <Image style={{width: 70, height: 70, marginBottom: 10}} source={p.img_path}/>
             <Text>{p.title}</Text>
 
         </View>
@@ -256,6 +183,95 @@ const Home = ({navigation}) => {
         </Container>
     );
 };
+const suggestion = [
+
+    {
+        id: 2,
+        title: 'Recarga de ' + "\n" + 'Celular',
+        color: '',
+        img_path: require('../../assets/icons-pagar/mobile-icon-10.png'),
+        route: 'RechargeCell',
+        action: null,
+    },
+    {
+        id: 3,
+        title: 'Cobrar',
+        color: '',
+        img_path: require('../../assets/icons-home/toDemand-icon.png'),
+        route: 'ToDemand',
+        action: null,
+    },
+    {
+        id: 4,
+        title: 'Gerar Link' + "\n" + 'de pagamento',
+        color: '',
+        img_path: require('../../assets/icons-home/pay-link-icon-2.png'),
+        route: 'EnterValue',
+        action: 'billet',
+    },
+    {
+        id: 6,
+        title: 'Pagar contas',
+        color: '',
+        img_path: require('../../assets/icons-home/pay-bill.png'),
+        route: 'ToPay',
+        action: null,
+    },
+    {
+        id: 5,
+        title: 'Transferir',
+        color: '',
+        img_path: require('../../assets/icons-home/transfer-icon.png'),
+        route: 'Transfer',
+        action: null,
+    },
+    {
+        id: 1,
+        title: 'Pagar QR-code',
+        color: '',
+        img_path: require('../../assets/icons-home/qrcode-icon.png'),
+        route: null,
+        action: null,
+    },
+
+];
+
+
+const favirite = [
+    {
+        id: 1,
+        title: 'Adicione um' + "\n" + 'Favorito',
+        color: '',
+        img_path: require('../../assets/icons-home/fovourite-icon.png'),
+        route: null,
+        action: null,
+    }
+
+];
+
+const partners = [
+
+    {
+        id: 3,
+        img_path: require('../../assets/icons-descontos/comercio.png'),
+        title: 'Comercio'
+    },
+    {
+        id: 2,
+        img_path: require('../../assets/icons-descontos/farmacia.png'),
+        title: 'Farmacias'
+    },
+    {
+        id: 4,
+        img_path: require('../../assets/icons-descontos/retsaurante.png'),
+        title: 'Restaurantes'
+    },
+    {
+        id: 1,
+        img_path: require('../../assets/icons-descontos/supermarket.png'),
+        title: 'Supermercados'
+    }
+];
 
 
 export default Home;

@@ -452,19 +452,15 @@ const App = createStackNavigator({
     },
     RechargeCell: {
         screen: RechargeCell,
-        navigationOptions: ({navigation}) => ({
-            headerTitle: 'Recarga de celular',
-            headerTitleAlign: 'center',
-            headerLeft: <HeaderBackButton onPress={() => navigation.goBack(null)}/>
-        }),
+        navigationOptions: {
+            headerShown: false
+        },
     },
     Recharge: {
         screen: Recharge,
-        navigationOptions: ({navigation}) => ({
-            headerTitle: 'Recarga de celular',
-            headerTitleAlign: 'center',
-            headerLeft: <HeaderBackButton onPress={() => navigation.goBack(null)}/>
-        }),
+        navigationOptions: {
+            headerShown: false
+        },
     },
     RechargePay: {
         screen: RechargePay,
@@ -503,11 +499,9 @@ const App = createStackNavigator({
     },
     PaymentOptions: {
         screen: PaymentOptions,
-        navigationOptions: ({navigation}) => ({
-            headerTitle: 'Finalizar',
-            headerTitleAlign: 'center',
-            headerLeft: <HeaderBackButton onPress={() => navigation.goBack(null)}/>
-        }),
+        navigationOptions:{
+            headerShown: false
+        }
     },
     ToDemand: {
         screen: ToDemand,

@@ -32,7 +32,7 @@ const EnterValue = ({navigation}) => {
         {id: 8, number: 8},
         {id: 9, number: 9},
         {id: 10, number: 0},
-        {id: 11, number: 11},
+        // {id: 11, number: 11},
     ];
     const data_response = {
         expire: '13/05/2020',
@@ -109,7 +109,20 @@ const EnterValue = ({navigation}) => {
             />
             <View style={styles.content_value}>
                 <Text style={{fontSize: 16}}>{data_transaction.title_value}</Text>
-                <Text h3>{MaskService.toMask('money', data_transaction.value)}</Text>
+                <View style={{
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    paddingLeft: 40,
+                    marginTop: 40,
+                    paddingRight: 20,
+                    width: '100%'
+                }}>
+                    <Text h3>{MaskService.toMask('money', data_transaction.value)}</Text>
+                    <TouchableOpacity onPress={() => manageKeybord(11)}>
+                        <Icon name={'caret-left'} size={35}/>
+                    </TouchableOpacity>
+                </View>
             </View>
             <View style={styles.content_btn}>
                 <View style={{alignItems: 'center', marginBottom: 30}}>
@@ -120,25 +133,20 @@ const EnterValue = ({navigation}) => {
                         title="Prosseguir"
                     />
                 </View>
-
-                {number.map((n) => (
-                    <TouchableOpacity onPress={() => manageKeybord(n.number)}>
-                        {n.id === 11 ?
-                            <View style={styles.content_icon}>
-                                <Icon name={'caret-left'} size={35} color={'#fff'}/>
-                            </View>
-                            :
+                <View style={{flexDirection: 'row', padding: 15, flexWrap: 'wrap', justifyContent: 'center'}}>
+                    {number.map((n) => (
+                        <TouchableOpacity onPress={() => manageKeybord(n.number)}>
                             <Badge
                                 key={n.id}
                                 value={n.number}
-                                containerStyle={styles.content_number}
-                                textStyle={styles.text_number}
+                                textStyle={{fontSize: 20}}
+                                badgeStyle={{width: 50, height: 50, margin: 10}}
 
                             />
-                        }
-                    </TouchableOpacity>
+                        </TouchableOpacity>
 
-                ))}
+                    ))}
+                </View>
             </View>
         </Container>
     );

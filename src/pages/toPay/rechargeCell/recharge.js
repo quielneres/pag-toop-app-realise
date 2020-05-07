@@ -12,11 +12,13 @@ import {
 
 import {
     Container, Left, Content, CardItem, Body,
-    List, ListItem, Right, Icon, Form, Item, Picker
+    List, ListItem, Right, Form, Item, Picker
 } from 'native-base';
 import {View} from "react-native";
 import {MaskService} from "react-native-masked-text";
-import {Button, Card, Text} from 'react-native-elements';
+import {Button, Card, Header, Text} from 'react-native-elements';
+import colors from "../../../components/styles/colors";
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 
 const RechargeCells = ({navigation}) => {
@@ -75,6 +77,15 @@ const RechargeCells = ({navigation}) => {
 
     return (
         <Container>
+            <Header
+                containerStyle={{backgroundColor: colors.primary}}
+                leftComponent={<Icon name={'chevron-left'} color={'#fff'} size={25}
+                                     onPress={() => navigation.goBack(null)}/>}
+                centerComponent={{
+                    text: 'Reacarga de celular',
+                    style: {fontSize: 16, color: '#fff', fontWeight: 'bold'}
+                }}
+            />
             <Content>
                 <RechargeHeader>
                     <Text>Selecione um valor:</Text>
