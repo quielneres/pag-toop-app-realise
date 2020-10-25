@@ -40,7 +40,6 @@ export default function Welcome(props) {
     });
 
     async function saveUser(user) {
-
         await AsyncStorage.setItem('@ListApp:userToken', JSON.stringify(user));
     };
 
@@ -53,15 +52,19 @@ export default function Welcome(props) {
 
         try {
             const credentials = {
-                email: username,
-                password: password,
+                grant_type: "password",
+                client_id : 3,
+                client_secret : "DSbRxGU2Ps04BU09FQOPhRMbehZhew36ssFqTh55",
+                username : username,
+                password : password
             };
 
-            const response = await api.post('/auth/login', credentials);
+            const response = await api.post('/oauth/token', credentials);
 
             const user = response.data;
 
             await saveUser(user);
+
 
             const resetAction = StackActions.reset({
                 index: 0,

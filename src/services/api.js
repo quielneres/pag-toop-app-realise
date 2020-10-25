@@ -5,9 +5,8 @@ import {Alert} from 'react-native';
 import {getUser, navigate, deleteUser} from '../utils';
 
 const api = axios.create({
-    // baseURL: 'https://api-jwt-tutorial.herokuapp.com',
-    // baseURL: 'https://dog.ceo/api',
-    baseURL: 'https://paguetop.appspot.com/api',
+    baseURL: 'https://pagtop-webserver.azurewebsites.net',
+    // baseURL: 'https://paguetop.appspot.com/api',
     // baseURL: 'https://dog.ceo/api',
     headerShown: {
         'Content-Type': 'application/json',
