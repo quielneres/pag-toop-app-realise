@@ -20,7 +20,7 @@
     "expo": "^37.0.4",
     "galio-framework": "^0.6.3",
     "indicative": "^7.4.4",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "native-base": "^2.13.12",
     "react": "16.9.0",
     "react-native": "0.61.5",
